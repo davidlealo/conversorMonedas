@@ -35,5 +35,7 @@
 }
 
 .myChart{
-    width: 80vw;
+    width: 60vw;
+    height: 40vh;
+    margin: 30px;
 }
