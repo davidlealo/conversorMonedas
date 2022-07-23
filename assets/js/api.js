@@ -8,6 +8,9 @@ function nuevaMoneda () {
     return moneda
 }
 
+//Variables globales
+let res;
+let data;
 
 //Variable del ID del botón
 let botonBuscar = document.querySelector('#btn-buscar');
@@ -22,8 +25,8 @@ const consulta = async () => {
         let respuestaConsulta = document.querySelector('.card-footer');
 
         //Invocar la api con el tipo de moneda
-        const res = await fetch(`https://mindicador.cl/api/${moneda}`);
-        const data = await res.json();
+        res = await fetch(`https://mindicador.cl/api/${moneda}`);
+        data = await res.json();
 
         if (clp <= 0) {
             alert('Debes ingresar una cantidad mínima de $1 peso chileno para poder usar este botón')
@@ -32,7 +35,6 @@ const consulta = async () => {
             respuestaConsulta.innerHTML = `<p>El resultado es: ${operacion.toFixed(2)} de ${data['nombre']}`
         }
         
-        renderGrafica();
         
     } catch (error) {
         error.message
@@ -40,43 +42,15 @@ const consulta = async () => {
 }
 
 //Función del gráfico
-async function getAndCreateDataToChart() {
-    const res = await
-        fetch(`https://mindicador.cl/api/${moneda}`);
-    const sismos = await res.json();
-    const labels = sismos.map((sismo) => {
-        return sismo.Fecha;
-    });
-    const data = sismos.map((sismo) => {
-        const magnitud = sismo.Magnitud.split(" ")[0];
-        return Number(magnitud);
-    });
-    const datasets = [
-        {
-            label: "Sismo",
-            borderColor: "rgb(255, 99, 132)",
-            data
-        }
-    ];
-    return { labels, datasets };
-}
-async function renderGrafica() {
-    const data = await getAndCreateDataToChart();
-    const config = {
-        type: "line",
-        data
-    };
-    const myChart = document.getElementById("myChart");
-    myChart.style.backgroundColor = "white";
-    new Chart(myChart, config);
-}
 
 
 //Evento del botón
 botonBuscar.addEventListener('click', () => {
-    consulta();
     nuevaMoneda();
     console.log("La moneda ahora es " + moneda);
+    consulta();
+
+   // renderGrafica();
 
 })
 

@@ -28,14 +28,15 @@
                     </h3>
                     <input type="number" name="clp" id="clp" class="mb-3" value="0">
                     <label for="nuevaMoneda" class="text-uppercase mt-5">Moneda a Convertir</label>
-                    <select class="mb-5" id="valoresMonedas">
+                    <select class="mb-5" id="valoresMonedas" onchange="consulta()">
+                        <option value=" ">[Elige el tipo de cambio]</option>
                         <option value="dolar">Dolar</option>
                         <option value="euro">Euro</option>
                         <option value="utm">UTM</option>
                         <option value="ivp">IVP</option>
                         <option value="uf">UF</option>
                     </select>
-                    <button class="btn btn-info" id="btn-buscar">
+                    <button class="btn btn-info text-light" id="btn-buscar">
                         Buscar
                     </button>
                     <div class="card-footer">
