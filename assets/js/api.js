@@ -42,8 +42,19 @@ const consulta = async () => {
 }
 
 //Función del gráfico
-
-
+/*
+const grafico = querySelector('#myChart');
+async () => {let myChart = await new Chart(grafico, {
+    type: 'line',
+    data: {
+        labels: [data['serie'][0]['fecha'], data['serie'][1]['fecha'], data['serie'][2]['fecha'], data['serie'][3]['fecha'], data['serie'][4]['fecha'], data['serie'][5]['fecha'], data['serie'][6]['fecha'], data['serie'][7]['fecha'], data['serie'][8]['fecha'], data['serie'][9]['fecha']],
+        dataset: [{
+            label: `<p>Gráfico de últimos 10 días de ${moneda} `,
+            data: [data['serie'][0]['valor'], data['serie'][1]['valor'], data['serie'][2]['valor'], data['serie'][3]['valor'], data['serie'][4]['valor'], data['serie'][5]['valor'], data['serie'][6]['valor'], data['serie'][7]['valor'], data['serie'][8]['valor'], data['serie'][9]['valor']]
+        }],
+    }
+})}
+*/
 //Evento del botón
 botonBuscar.addEventListener('click', () => {
     nuevaMoneda();
