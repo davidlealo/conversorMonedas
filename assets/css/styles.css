@@ -1,3 +1,5 @@
+
+
 .container{
     /*Uso de Flex para centrar el contenido*/
     display: flex;
@@ -7,6 +9,10 @@
 
     /*Altura de container de toda la pantalla*/
     height: 100vh;
+
+    /*Fuente del container*/
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 .container-select{

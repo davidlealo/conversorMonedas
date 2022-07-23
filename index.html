@@ -22,17 +22,16 @@
 <div class="container-select">
     <div class="card bg-secondary">
         <div class="card-body">
-            <h3 class="card-tittle mb-5">
+            <h3 class="card-tittle mb-2">
                 Pesos CLP
             </h3>
-            <label for="pesos" class="text-uppercase">Pesos CLP</label>
-            <input type="number" name="clp" id="clp" class="mb-3">
-            <label for="nuevaMoneda" class="text-uppercase">Moneda a Convertir</label>
-            <select class="mb-5 custom-select" id="valoresMonedas" onchange="getMonedas()">
+            <input type="number" name="clp" id="clp" class="mb-3" value="0">
+            <label for="nuevaMoneda" class="text-uppercase mt-5">Moneda a Convertir</label>
+            <select class="mb-5" id="valoresMonedas" onchange="consulta()">
                 <option value="dolar">Dolar</option>
                 <option value="euro">Euro</option>
             </select>
-            <button class="btn btn-info">
+            <button class="btn btn-info" id="btn-buscar">
                 Buscar
             </button>
             <div class="card-footer">
@@ -46,7 +45,7 @@
    
 
 
-
+<div id="grafico"></div>
     
     <!--Scrip Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
