@@ -1,0 +1,26 @@
+.container{
+    /*Uso de Flex para centrar el contenido*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /*Altura de container de toda la pantalla*/
+    height: 100vh;
+}
+
+.container-select{
+    width: 50vw;
+    height: 70vh;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+}

@@ -13,39 +13,23 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Conversor de Monedas</title>
 </head>
-<body class="bg-dark">
+<body>
+    <!--Primera prueba de tener una lista de monedas-->
+    <div class="listaMonedas"></div>
 
-    <div class="container text-light">
-<h3 class="text-uppercase">
-    conversor de monedas nacional
-</h3>
-<div class="container-select">
-    <div class="card bg-secondary">
-        <div class="card-body">
-            <h3 class="card-tittle mb-5">
-                Pesos CLP
-            </h3>
-            <label for="pesos" class="text-uppercase">Pesos CLP</label>
-            <input type="number" name="clp" id="clp" class="mb-3">
-            <label for="nuevaMoneda" class="text-uppercase">Moneda a Convertir</label>
-            <select class="mb-5 custom-select" id="valoresMonedas" onchange="getMonedas()">
-                <option value="dolar">Dolar</option>
-                <option value="euro">Euro</option>
-            </select>
-            <button class="btn btn-info">
-                Buscar
-            </button>
-            <div class="card-footer">
-                <!--Texto de respuesta-->
-            </div>
-        </div>
-        
-    </div>
-</div>
-    </div>
-   
+    <!--Valor UF-->
+    <div id="prueba"></div>
 
 
+    <!--Lista desordenada-->
+   <!--  <ul class="listaMonedasDesordenada"></ul>
+        <section id="valoresMonedas" onchange="getMonedas()">
+ -->
+
+<select id="valoresMonedas" onchange="getMonedas()">
+    <option value="dolar">Dolar</option>
+    <option value="euro">Euro</option>
+</select>
 
     
     <!--Scrip Bootstrap-->
