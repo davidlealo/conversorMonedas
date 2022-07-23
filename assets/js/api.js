@@ -68,7 +68,7 @@ async function getAndCreateDataToChart() {
         }
     }
 
-    return { ejeX, dataset };
+    return { ejeX, ejeY, dataset };
 
 }
 
@@ -79,7 +79,6 @@ async function renderGrafica() {
         data
     };
     const myChart = document.getElementById("myChart");
-    myChart.style.backgroundColor = "white";
     new Chart(myChart, config);
 }
 
