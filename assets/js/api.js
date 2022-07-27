@@ -35,58 +35,64 @@ const consulta = async () => {
             respuestaConsulta.innerHTML = `<p>El resultado es: ${operacion.toFixed(2)} de ${data['nombre']}`
         }
 
+        let yValues = [
+            data['serie'][9]['valor'],
+            data['serie'][8]['valor'],
+            data['serie'][7]['valor'],
+            data['serie'][6]['valor'],
+            data['serie'][5]['valor'],
+            data['serie'][4]['valor'],
+            data['serie'][3]['valor'],
+            data['serie'][2]['valor'],
+            data['serie'][1]['valor'],
+            data['serie'][0]['valor']
+        ];
+
+        let xValues = [
+            new Date(data['serie'][9]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][8]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][7]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][6]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][5]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][4]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][3]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][2]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][1]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][0]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"})
+    ];
+
+   
+
+        new Chart("myChart", {
+            type: "line",
+            data: {
+              labels: xValues,
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: yValues
+              }]
+            },
+            options: {
+              legend: {display: false},
+              scales: {
+                yAxes: [{ticks: {min: 6, max:16}}],
+              }
+            }
+          });
+
 
     } catch (error) {
         error.message
     }
 }
 
-//Función del gráfico
-async function getAndCreateDataToChart() {
-    const resGrafico = await fetch(`https://mindicador.cl/api/${moneda}`);
-    const dataGrafico = await resGrafico.json();
-
-    //Eje X
-    const ejeX = [dataGrafico['serie'][0]['fecha'], dataGrafico['serie'][1]['fecha'], dataGrafico['serie'][2]['fecha'], dataGrafico['serie'][3]['fecha'], dataGrafico['serie'][4]['fecha'], dataGrafico['serie'][5]['fecha'], dataGrafico['serie'][6]['fecha'], dataGrafico['serie'][7]['fecha'], dataGrafico['serie'][8]['fecha'], dataGrafico['serie'][9]['fecha']];
-
-    //Eje y 
-    const ejeY = [dataGrafico['serie'][0]['valor'], dataGrafico['serie'][1]['valor'], dataGrafico['serie'][2]['valor'], dataGrafico['serie'][3]['valor'], dataGrafico['serie'][4]['valor'], dataGrafico['serie'][5]['valor'], dataGrafico['serie'][6]['valor'], dataGrafico['serie'][7]['valor'], dataGrafico['serie'][8]['valor'], dataGrafico['serie'][9]['valor']];
-
-    //Dataset
-    const dataset = [{
-        label: 'Valor útimos diez días',
-        borderColor: "rgb(255, 99, 132)",
-        borderWidth: 2,
-        data
-    }
-    ];
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-
-    return { ejeX, ejeY, dataset };
-
-}
-
-async function renderGrafica() {
-    const data = await getAndCreateDataToChart();
-    const config = {
-        type: "line",
-        data
-    };
-    const myChart = document.getElementById("myChart");
-    new Chart(myChart, config);
-}
 
 //Evento del botón
 botonBuscar.addEventListener('click', () => {
     nuevaMoneda();
-    console.log("La moneda ahora es " + moneda);
-    renderGrafica();
     consulta();
 })
 

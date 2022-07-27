@@ -1,105 +1,70 @@
-try{
-    //var getMoneda = document.querySelector('#valoresMonedas');
-    //var getMoneda = document.querySelector('#dolar').value;
-    var getMoneda = document.querySelector('option').value;
-    console.log(getMoneda)
-    console.log(typeof(getMoneda))
-
-    //console.log(getMoneda)
-    var getNombreMoneda = document.querySelector('#dolar').value['nombre']
-    //console.log(getNombreMoneda)
+//var xValues = [60,70,80,90,100,110,120,130,140,150];
+//var yValues = [7,8,8,9,9,9,10,11,14,14];
 
 
-    async function getMonedas(){
-       // const res = await fetch("https://mindicador.cl/api/"+getMoneda.value)
-        console.log(getMoneda)
-        //const res = await fetch("https://mindicador.cl/api")
-        //const data = await res.json()
-
-       // let nombre = data.getMoneda['nombre']
-        //let valor = data.getMoneda[0].innerHTML
-        //const prueba = document.querySelector('#prueba')
-        //prueba.innerHTML = data.getMoneda['nombre']
-       // prueba.innerHTML = data.dolar['valor']
-
-
-    }
-
-    getMonedas()
-
-    /*
-    async function getNombreMoneda() {
-        const resNombreMonedas = await fetch("https://mindicador.cl/api")
-        const datanombreMonedas = await resNombreMonedas.json()
-        const nombreMonedas = document.querySelector('#nombreUf')
-        nombreMonedas.innerHTML = datanombreMonedas.uf['nombre']
-    }
-  
-
-    async function getValorMoneda() {
-        const resValorMonedas = await fetch("https://mindicador.cl/api")
-        const dataValorMonedas = await resValorMonedas.json()
-        const valorMonedas = document.querySelector('#valorUf')
-        valorMonedas.innerHTML = dataValorMonedas.uf['valor']
-    }
-    -----------------
-    async function getNombreUf() {
-        const resMonedas = await fetch("https://mindicador.cl/api")
-        const dataMonedas = await resMonedas.json()
-        const monedas = document.querySelector('#nombreUf')
-        monedas.innerHTML = dataMonedas.uf['nombre']
-    }
-    async function getNombreIvp() {
-        const resMonedas = await fetch("https://mindicador.cl/api")
-        const dataMonedas = await resMonedas.json()
-        const monedas = document.querySelector('#nombreIvp')
-        monedas.innerHTML = dataMonedas.ivp['nombre']
-    }
-
-    async function getValorUf() {
-        const resMonedas = await fetch("https://mindicador.cl/api")
-        const dataMonedas = await resMonedas.json()
-        const monedas = document.querySelector('#valorUf')
-        monedas.innerHTML = dataMonedas.uf['valor']
-    }
+const consulta = async () => {
+    try {
     
-    
-    function getNombreMonedas(){
-        getNombreUf()
+        //Invocar la api con el tipo de moneda
+        res = await fetch(`https://mindicador.cl/api/dolar`);
+        data = await res.json();
+        
+        
+        let yValues = [
+            data['serie'][9]['valor'],
+            data['serie'][8]['valor'],
+            data['serie'][7]['valor'],
+            data['serie'][6]['valor'],
+            data['serie'][5]['valor'],
+            data['serie'][4]['valor'],
+            data['serie'][3]['valor'],
+            data['serie'][2]['valor'],
+            data['serie'][1]['valor'],
+            data['serie'][0]['valor']
+        ];
+
+        let xValues = [
+            new Date(data['serie'][9]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][8]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][7]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][6]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][5]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][4]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][3]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][2]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][1]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"}),
+            new Date(data['serie'][0]['fecha']).toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"})
+    ];
+
+   
+
+        new Chart("myChart", {
+            type: "line",
+            data: {
+              labels: xValues,
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: yValues
+              }]
+            },
+            options: {
+              legend: {display: false},
+              scales: {
+                yAxes: [{ticks: {min: 6, max:16}}],
+              }
+            }
+          });
+
+
+    } catch (error) {
+        error.message
     }
-    
-    function getValorMonedas(){
-        getValorUf()
-    }
-    getNombreMonedas()
-   */
-    /*
-    monedas = [uf, ivp, dolar, euro, utm]
-
-    for (moneda of monedas){
-        console.log(moneda)
-        let listaMonedasImprimir = document.querySelector('.listaMonedasDesordenada')
-        listaMonedasImprimir.innerHTML =+ `<li>${getNombreMoneda(moneda)}</li>`
-    }*/
-
-    /* ESTO NO FUNCIONA 
-
-    async function getListaMonedas() {
-        const resMonedas = await fetch("https://mindicador.cl/api")
-        const dataMonedas = await resMonedas.json()
-        const monedas = document.querySelector('.listaMonedas')
-        monedas.innerHTML = dataMonedas.['codigo']
-    }
-    getListaMonedas()
-
-    La respuesta puede estar en: https://youtu.be/2Xm9P_tXtK8 
-    También revisar: https://youtu.be/rKK1q7nFt7M 
-
-    Aunque parece que la respuesta definitiva está en: https://es.stackoverflow.com/questions/231464/mostrar-datos-en-consola 
-    */
-
-    
-
-} catch (e) {
-    console.log(e.message)
 }
+
+consulta()
+console.log(new Date().toLocaleDateString('es-es', {day:"numeric", month:"short", year:"numeric"})) 
+// "Friday, Jul 2, 2021"
+
