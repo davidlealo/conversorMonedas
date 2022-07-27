@@ -66,8 +66,10 @@ const consulta = async () => {
         new Chart("myChart", {
             type: "line",
             data: {
+                
               labels: xValues,
               datasets: [{
+                label: `últimos diez días de ${moneda}`,
                 fill: false,
                 lineTension: 0,
                 backgroundColor: "rgba(0,0,255,1.0)",
